@@ -1,11 +1,11 @@
-function calcularDesconto(valor, porcentagem) {
-  if (typeof valor !== 'number' || typeof porcentagem !== 'number') {
-    return 0;
+function calcularDesconto(valor) {
+  if (valor >= 100) {
+    return valor * 0.9;
   }
-  return valor - valor * (porcentagem / 100);
+  return valor;
 }
 
-// Exportando para o ambiente de testes (Node.js)
-if (typeof module !== 'undefined') {
-  module.exports = { calcularDesconto };
+// Lógica de Sênior: Verifica se estamos no ambiente Node.js para exportar
+if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
+  module.exports = calcularDesconto;
 }
