@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "script.js",
   "scripts": {
-    "test": "jest",
-    "eslint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "test": "npm run lint && jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",

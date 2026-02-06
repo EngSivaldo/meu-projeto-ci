@@ -1,14 +1,20 @@
-function calcularDesconto(valor, percentual) {
-  // Valida se os parâmetros são números
-  if (typeof valor !== 'number' || typeof percentual !== 'number') {
+function calcularDivida(valorInicial, taxaMensal, meses) {
+  // Validação de segurança para garantir que são números
+  if (
+    typeof valorInicial !== 'number' ||
+    typeof taxaMensal !== 'number' ||
+    typeof meses !== 'number'
+  ) {
     return 0;
   }
 
-  const desconto = valor * (percentual / 100);
-  return valor - desconto;
+  const i = taxaMensal / 100; // Converte porcentagem para decimal
+  const valorFinal = valorInicial * Math.pow(1 + i, meses); // Fórmula de juros compostos
+
+  return parseFloat(valorFinal.toFixed(2)); // Retorna com 2 casas decimais
 }
 
-// Exportação híbrida (Navegador + Node)
+// Exportação híbrida (Navegador + Node/Jest)
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-  module.exports = { calcularDesconto }; // Exportando como objeto para bater com seu require
+  module.exports = { calcularDivida };
 }
