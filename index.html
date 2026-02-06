@@ -2,36 +2,36 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de Dívida - CI/CD</title>
-    <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; padding: 40px; background: #eef2f3; }
-        .box { background: white; padding: 25px; border-radius: 10px; shadow: 0 4px 6px rgba(0,0,0,0.1); width: 320px; }
-        input { width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        .res { margin-top: 20px; font-weight: bold; color: #2c3e50; font-size: 1.1em; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Pro - Controle seu Futuro</title>
+    <link rel="stylesheet" href="marketing/estilo.css">
 </head>
 <body>
-    <div class="box">
-        <h3>Calculadora Financeira 💰</h3>
-        <input type="number" id="valor" placeholder="Valor Inicial (R$)">
-        <input type="number" id="taxa" placeholder="Juros Mensais (%)">
-        <input type="number" id="tempo" placeholder="Quantidade de Meses">
-        <button onclick="executar()">Calcular Valor Final</button>
-        <div class="res" id="res"></div>
-    </div>
+    <header class="hero">
+        <div class="container">
+            <h1>Saia das dívidas com inteligência! 💸</h1>
+            <p>Nossa calculadora de juros compostos é a ferramenta que faltava para você organizar sua vida financeira.</p>
+            <a href="calculadora.html" class="btn">Testar Agora Gratuitamente</a>
+        </div>
+    </header>
 
-    <script src="script.js"></script>
-    <script>
-        function executar() {
-            const v = parseFloat(document.getElementById('valor').value);
-            const t = parseFloat(document.getElementById('taxa').value);
-            const m = parseFloat(document.getElementById('tempo').value);
-            const display = document.getElementById('res');
+    <section class="features">
+        <div class="container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=300&q=80" alt="Gráficos">
+                <h3>Cálculos Precisos</h3>
+                <p>Algoritmos de nível bancário para garantir que cada centavo seja contado.</p>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=300&q=80" alt="Moedas">
+                <h3>Planejamento</h3>
+                <p>Simule meses à frente e veja o impacto dos juros no seu bolso.</p>
+            </div>
+        </div>
+    </section>
 
-            const total = calcularDivida(v, t, m);
-            display.innerText = total > 0 ? `Total a pagar: R$ ${total.toLocaleString('pt-BR')}` : 'Erro nos dados!';
-        }
-    </script>
+    <footer>
+        <p>&copy; 2026 Calculadora Pro - Desenvolvido pela Equipe de Marketing</p>
+    </footer>
 </body>
 </html>
