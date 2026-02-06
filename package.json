@@ -4,13 +4,16 @@
   "main": "script.js",
   "scripts": {
     "test": "jest",
-    "eslint": "eslint ."
+    "eslint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "globals": "^17.3.0",
     "jes": "^0.6.1",
     "jest": "^30.2.0"
   }
