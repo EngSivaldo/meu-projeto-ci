@@ -1,15 +1,18 @@
-name: Pipeline de Integração Contínua
+name: Pipeline de CI e CD Completa
 
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
+
+# Permissões necessárias para o Deploy automático
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  validacao:
+  validacao-e-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Baixando o código
         uses: actions/checkout@v4
@@ -17,13 +20,26 @@ jobs:
       - name: Configurando Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: 20
 
       - name: Instalando dependências
         run: npm install
 
-      - name: Verificando padronização do código (Lint)
-        run: npm run eslint
+      - name: Verificando Lint (Qualidade)
+        run: npx eslint .
 
-      - name: Executando os testes
+      - name: Executando Testes Unitários
         run: npm test
+
+      # Passos de Deploy (Só acontecem se o Lint e o Teste passarem)
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Preparar arquivos para Upload
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "." # Sobe o index.html e os scripts
+
+      - name: Publicar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
