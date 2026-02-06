@@ -22,5 +22,8 @@ jobs:
       - name: Instalando dependências
         run: npm install
 
+      - name: Verificando padronização do código (Lint)
+        run: npm run eslint
+
       - name: Executando os testes
         run: npm test
