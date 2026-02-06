@@ -6,6 +6,6 @@ function calcularDesconto(valor) {
 }
 
 // Lógica de Sênior: Verifica se estamos no ambiente Node.js para exportar
-if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
   module.exports = calcularDesconto;
 }
