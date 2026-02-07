@@ -1,9 +1,9 @@
 function calcularDivida(valorInicial, taxaMensal, meses) {
   // Validação de segurança: deve ser número e não pode ser negativo
   if (
-    typeof valorInicial !== "number" ||
-    typeof taxaMensal !== "number" ||
-    typeof meses !== "number" ||
+    typeof valorInicial !== 'number' ||
+    typeof taxaMensal !== 'number' ||
+    typeof meses !== 'number' ||
     valorInicial < 0 ||
     taxaMensal < 0 ||
     meses < 0
@@ -18,6 +18,6 @@ function calcularDivida(valorInicial, taxaMensal, meses) {
 }
 
 // Exportação híbrida (Navegador + Node/Jest)
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = calcularDivida;
 }
