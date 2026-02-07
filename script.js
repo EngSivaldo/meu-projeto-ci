@@ -1,20 +1,24 @@
 function calcularDivida(valorInicial, taxaMensal, meses) {
   // Validação de segurança para garantir que são números
   if (
-    typeof valorInicial !== 'number' ||
-    typeof taxaMensal !== 'number' ||
-    typeof meses !== 'number'
+    typeof valorInicial !== "number" ||
+    typeof taxaMensal !== "number" ||
+    typeof meses !== "number" ||
+    valorInicial < 0 ||
+    taxaMensal < 0 ||
+    meses < 0 // Boa prática: evitar valores negativos
   ) {
     return 0;
   }
 
-  const i = taxaMensal / 100; // Converte porcentagem para decimal
-  const valorFinal = valorInicial * Math.pow(1 + i, meses); // Fórmula de juros compostos
+  const i = taxaMensal / 100;
+  const valorFinal = valorInicial * Math.pow(1 + i, meses);
 
-  return parseFloat(valorFinal.toFixed(2)); // Retorna com 2 casas decimais
+  return parseFloat(valorFinal.toFixed(2));
 }
 
 // Exportação híbrida (Navegador + Node/Jest)
-if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-  module.exports = { calcularDivida };
+// Sênior: Exportamos a função DIRETAMENTE para o require do teste funcionar
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = calcularDivida;
 }
