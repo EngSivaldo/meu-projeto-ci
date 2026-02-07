@@ -13,8 +13,8 @@
             --text: #1e293b;
         }
 
-        body { 
-            font-family: 'Inter', sans-serif; 
+        body {
+            font-family: 'Inter', sans-serif;
             margin: 0;
             background: var(--bg);
             color: var(--text);
@@ -24,7 +24,6 @@
             min-height: 100vh;
         }
 
-        /* Barra de Navegação Sênior */
         nav {
             width: 100%;
             background: white;
@@ -45,44 +44,43 @@
 
         nav a:hover { opacity: 0.7; }
 
-        /* Card Principal */
-        .box { 
-            background: white; 
-            padding: 40px; 
-            border-radius: 16px; 
+        .box {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 400px; 
+            max-width: 400px;
             text-align: center;
         }
 
         h3 { margin-bottom: 25px; font-size: 1.5rem; color: #0f172a; }
 
         .input-group { text-align: left; margin-bottom: 15px; }
-        
+
         label { font-size: 0.85rem; font-weight: 600; color: #64748b; margin-bottom: 5px; display: block; }
 
-        input { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1.5px solid #e2e8f0; 
-            border-radius: 8px; 
-            box-sizing: border-box; 
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            box-sizing: border-box;
             font-size: 1rem;
             transition: 0.2s;
         }
 
         input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
 
-        button { 
-            width: 100%; 
-            padding: 14px; 
-            background: var(--primary); 
-            color: white; 
-            border: none; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-weight: 700; 
+        button {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
             font-size: 1rem;
             margin-top: 10px;
             transition: 0.2s;
@@ -97,47 +95,39 @@
         }
 
         .res-label { font-size: 0.9rem; color: #64748b; }
-        .res-value { 
+        .res-value {
             display: block;
-            font-size: 1.8rem; 
-            font-weight: 800; 
-            color: #10b981; /* Verde sucesso */
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #10b981;
             margin-top: 5px;
         }
     </style>
 </head>
 <body>
-
     <nav>
         <a href="index.html">← Voltar para a Página Inicial</a>
     </nav>
-
     <div class="box">
         <h3>Simulador Financeiro 📈</h3>
-        
         <div class="input-group">
             <label>Valor Inicial</label>
             <input type="number" id="valor" placeholder="Ex: 1000">
         </div>
-
         <div class="input-group">
             <label>Taxa de Juros Mensal (%)</label>
             <input type="number" id="taxa" placeholder="Ex: 2.5">
         </div>
-
         <div class="input-group">
             <label>Tempo (Meses)</label>
             <input type="number" id="tempo" placeholder="Ex: 12">
         </div>
-
         <button type="button" onclick="executar()">Calcular Rendimento</button>
-        
         <div class="res-container" id="res-box" style="display: none;">
             <span class="res-label">Projeção do Valor Final:</span>
             <span class="res" id="res"></span>
         </div>
     </div>
-
     <script src="script.js"></script>
     <script>
         function executar() {
@@ -146,15 +136,11 @@
             const m = parseFloat(document.getElementById('tempo').value);
             const display = document.getElementById('res');
             const resBox = document.getElementById('res-box');
-
             if (isNaN(v) || isNaN(t) || isNaN(m)) {
                 alert("Por favor, preencha todos os campos corretamente.");
                 return;
             }
-
-            // Chame sua função do script.js
             const total = calcularDivida(v, t, m);
-            
             if (total > 0) {
                 resBox.style.display = 'block';
                 display.innerHTML = `<span class="res-value">R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</span>`;
