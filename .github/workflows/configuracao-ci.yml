@@ -38,7 +38,7 @@ jobs:
         run: npx eslint .
 
       - name: Validando links e estrutura HTML
-        run: npx html-validate **/*.html
+        run: npx html-validate "**/*.html" --config .htmlvalidate.json --ignore-path .gitignore
 
       # ETAPA 5 (CI): Roda os testes automatizados. Garante que a lógica da calculadora está correta
       - name: Executando Testes Unitários
