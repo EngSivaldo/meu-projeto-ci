@@ -1,10 +1,11 @@
-const { calcularDivida } = require('./script');
+const calcularDivida = require("./script");
 
-test('deve calcular juros compostos corretamente (Ex: 1000 a 5% por 3 meses)', () => {
-  // 1000 * (1.05)^3 = 1157.625... -> 1157.63
-  expect(calcularDivida(1000, 5, 3)).toBe(1157.63);
+test("Deve calcular o montante de R$ 1000 a 10% por 2 meses corretamente", () => {
+  // Cálculo esperado: 1000 * (1.1)^2 = 1210
+  expect(calcularDivida(1000, 10, 2)).toBe(1210);
 });
 
-test('deve retornar 0 se os parâmetros forem inválidos', () => {
-  expect(calcularDivida('100', 5, 2)).toBe(0);
+test("Deve retornar 0 para valores de entrada inválidos", () => {
+  expect(calcularDivida(-100, 5, 1)).toBe(0);
+  expect(calcularDivida(100, -2, 1)).toBe(0);
 });

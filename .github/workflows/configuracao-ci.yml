@@ -1,45 +1,62 @@
+# Nome que identifica este fluxo de trabalho no painel 'Actions' do GitHub
 name: Pipeline de CI e CD Completa
 
+# Gatilho (Trigger): O robô começa a trabalhar sempre que houver um 'push' na branch 'main'
 on:
   push:
     branches: [main]
 
-# Permissões necessárias para o Deploy automático
+# Configura as chaves de acesso para o robô: ler o código, escrever no Pages e gerar tokens de identidade
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# O conjunto de tarefas que o robô vai realizar
 jobs:
   validacao-e-deploy:
+    # Máquina virtual onde o código será executado (um computador Linux atualizado)
     runs-on: ubuntu-latest
+
     steps:
+      # ETAPA 1 (CI): Copia os seus arquivos do repositório para dentro da máquina virtual
       - name: Baixando o código
         uses: actions/checkout@v4
 
+      # ETAPA 2 (CI): Instala o motor JavaScript (Node.js) na versão 20
       - name: Configurando Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      # ETAPA 3 (CI): Instala as bibliotecas listadas no seu package.json (como o ESLint e o Jest)
       - name: Instalando dependências
         run: npm install
 
+      # ETAPA 4 (CI): Analisa a qualidade do código. Se houver erro de sintaxe, a esteira para aqui!
       - name: Verificando Lint (Qualidade)
         run: npx eslint .
 
+      - name: Validando links e estrutura HTML
+        run: npx html-validate **/*.html
+
+      # ETAPA 5 (CI): Roda os testes automatizados. Garante que a lógica da calculadora está correta
       - name: Executando Testes Unitários
         run: npm test
 
-      # Passos de Deploy (Só acontecem se o Lint e o Teste passarem)
+      # --- INÍCIO DO CD (Só acontece se todas as etapas de CI acima derem check verde ✅) ---
+
+      # ETAPA 6 (CD): Prepara o ambiente específico para o GitHub Pages
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v4
 
+      # ETAPA 7 (CD): Empacota os arquivos. O '.' indica que ele vai subir tudo (HTML, CSS na pasta marketing, etc)
       - name: Preparar arquivos para Upload
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "." # Sobe o index.html e os scripts
+          path: "."
 
+      # ETAPA 8 (CD): O passo final que envia o pacote para o servidor e atualiza o seu site ao vivo
       - name: Publicar no GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
